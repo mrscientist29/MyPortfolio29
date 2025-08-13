@@ -1,0 +1,116 @@
+.skills {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  align-items: center;
+}
+
+.heading {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: center;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--spacing-2);
+}
+
+.intro {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  margin-bottom: var(--spacing-4);
+}
+
+.skillsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--spacing-8);
+  max-width: 800px;
+  width: 100%;
+}
+
+.skill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-3);
+  transition: transform 0.3s ease;
+}
+
+.skill:hover {
+  transform: translateY(-5px);
+}
+
+.skillIconWrapper {
+  width: 100px;
+  height: 100px;
+  background-color: var(--surface);
+  border-radius: var(--radius-lg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.skillIconWrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.skillIconWrapper:hover::before {
+  left: 100%;
+}
+
+.skillIconWrapper:hover {
+  transform: scale(1.05);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.skillIcon {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+  z-index: 1;
+  position: relative;
+}
+
+.skillName {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .heading {
+    font-size: 2.2rem;
+  }
+  
+  .skillsContainer {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: var(--spacing-6);
+  }
+  
+  .skillIconWrapper {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .skillName {
+    font-size: 0.85rem;
+  }
+}

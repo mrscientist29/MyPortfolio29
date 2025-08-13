@@ -1,0 +1,452 @@
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: var(--spacing-8);
+  overflow: hidden;
+}
+
+.heroContent {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: var(--z-content);
+  gap: var(--spacing-12);
+}
+
+.leftContent {
+  flex: 1;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-6);
+}
+
+.rightContent {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.badge {
+  align-self: flex-start;
+  background: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  font-weight: 500;
+  padding: var(--spacing-2) var(--spacing-4);
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #ffffff;
+  margin: 0;
+}
+
+.gradientText {
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  max-width: 500px;
+}
+
+.learnMoreButton {
+  align-self: flex-start;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  border: none;
+  padding: var(--spacing-4) var(--spacing-8);
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: var(--radius-lg);
+  transition: all var(--animation-duration-fast) ease;
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+}
+
+.learnMoreButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+  background: linear-gradient(135deg, #9333ea, #f472b6);
+}
+
+/* Profile Photo Styles */
+.profilePhotoContainer {
+  position: relative;
+  perspective: 1000px;
+}
+
+.profilePhotoWrapper {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: profileFloating 6s ease-in-out infinite;
+  transform-style: preserve-3d;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.profilePhotoWrapper:hover {
+  transform: translateY(-8px) rotateY(5deg) rotateX(5deg) scale(1.05);
+  animation-play-state: paused;
+}
+
+.profilePhoto {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  object-fit: cover;
+  position: relative;
+  z-index: 3;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
+  transform: scale(0.8);
+  animation: profileFadeIn 1.2s ease-out 0.5s forwards;
+  filter: brightness(1.1) contrast(1.05) saturate(1.1);
+}
+
+.profilePhoto:hover {
+  border-radius: var(--radius-lg);
+  transform: scale(1.02) rotateZ(2deg);
+  filter: brightness(1.15) contrast(1.1) saturate(1.15);
+}
+
+.profilePhotoGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, rgba(236, 72, 153, 0.3) 50%, transparent 70%);
+  z-index: 1;
+  animation: profileGlowPulse 3s ease-in-out infinite;
+  filter: blur(20px);
+}
+
+.profilePhotoBorder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 2;
+  background: conic-gradient(
+    from 0deg,
+    #8b5cf6,
+    #ec4899,
+    #f59e0b,
+    #10b981,
+    #3b82f6,
+    #8b5cf6
+  );
+  animation: profileBorderRotation 8s linear infinite;
+  padding: 3px;
+  transition: all 0.4s ease;
+}
+
+.profilePhotoBorder:hover {
+  border-radius: var(--radius-lg);
+  animation-duration: 2s;
+  padding: 4px;
+  filter: brightness(1.3);
+}
+
+.profilePhotoBorder::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: inherit;
+  background: #0f0f17;
+  z-index: -1;
+}
+
+/* Particle Trail Effect */
+.particleTrail {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #8b5cf6;
+  border-radius: 50%;
+  opacity: 0;
+  animation: particleFloat 4s ease-in-out infinite;
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.8);
+}
+
+.particle:nth-child(1) {
+  top: 10%;
+  left: 20%;
+  animation-delay: 0s;
+  animation-duration: 3s;
+}
+
+.particle:nth-child(2) {
+  top: 20%;
+  right: 15%;
+  animation-delay: 0.6s;
+  animation-duration: 4s;
+  background: #ec4899;
+  box-shadow: 0 0 10px rgba(236, 72, 153, 0.8);
+}
+
+.particle:nth-child(3) {
+  bottom: 15%;
+  left: 15%;
+  animation-delay: 1.2s;
+  animation-duration: 3.5s;
+  background: #f59e0b;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.8);
+}
+
+.particle:nth-child(4) {
+  bottom: 25%;
+  right: 20%;
+  animation-delay: 1.8s;
+  animation-duration: 4.5s;
+}
+
+.particle:nth-child(5) {
+  top: 50%;
+  left: 5%;
+  animation-delay: 2.4s;
+  animation-duration: 3.8s;
+  background: #10b981;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
+}
+
+/* Keyframe Animations */
+@keyframes profileFloating {
+  0%, 100% {
+    transform: translateY(0px) rotateY(0deg);
+  }
+  25% {
+    transform: translateY(-8px) rotateY(2deg);
+  }
+  50% {
+    transform: translateY(-4px) rotateY(0deg);
+  }
+  75% {
+    transform: translateY(-12px) rotateY(-2deg);
+  }
+}
+
+@keyframes profileGlowPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+@keyframes profileBorderRotation {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes profileFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0px);
+  }
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    opacity: 0;
+    transform: translateY(0px) scale(0.8);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(-20px) scale(1.1);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .heroContent {
+    gap: var(--spacing-8);
+  }
+  
+  .heroTitle {
+    font-size: 2.5rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1.1rem;
+  }
+  
+  .profilePhotoWrapper {
+    width: 280px;
+    height: 280px;
+  }
+  
+  .profilePhoto {
+    width: 240px;
+    height: 240px;
+  }
+  
+  .profilePhotoGlow,
+  .profilePhotoBorder {
+    width: 260px;
+    height: 260px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    padding: var(--spacing-4);
+    text-align: center;
+  }
+  
+  .heroContent {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-8);
+  }
+  
+  .leftContent {
+    max-width: 100%;
+    align-items: center;
+    order: 2;
+  }
+  
+  .rightContent {
+    order: 1;
+    margin-bottom: var(--spacing-4);
+  }
+  
+  .heroTitle {
+    font-size: 2rem;
+  }
+  
+  .heroSubtitle {
+    font-size: 1rem;
+  }
+  
+  .badge {
+    align-self: center;
+  }
+  
+  .learnMoreButton {
+    align-self: center;
+  }
+  
+  .profilePhotoWrapper {
+    width: 240px;
+    height: 240px;
+  }
+  
+  .profilePhoto {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .profilePhotoGlow,
+  .profilePhotoBorder {
+    width: 220px;
+    height: 220px;
+  }
+  
+  /* Reduce particle effects on mobile for performance */
+  .particle {
+    animation-duration: 6s;
+  }
+  
+  /* Simplify hover effects on mobile */
+  .profilePhotoWrapper:hover {
+    transform: translateY(-4px) scale(1.02);
+  }
+}
+
+@media (max-width: 480px) {
+  .profilePhotoWrapper {
+    width: 200px;
+    height: 200px;
+  }
+  
+  .profilePhoto {
+    width: 160px;
+    height: 160px;
+  }
+  
+  .profilePhotoGlow,
+  .profilePhotoBorder {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .profilePhotoWrapper,
+  .profilePhotoGlow,
+  .profilePhotoBorder,
+  .particle {
+    animation: none;
+  }
+  
+  .profilePhotoWrapper:hover {
+    transform: scale(1.05);
+  }
+  
+  .profilePhoto {
+    animation: none;
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .profilePhotoBorder {
+    background: linear-gradient(45deg, #ffffff, #000000);
+  }
+  
+  .profilePhotoGlow {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
+  }
+}

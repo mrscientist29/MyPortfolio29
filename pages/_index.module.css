@@ -1,0 +1,128 @@
+.mainLayout {
+  width: 100vw;
+  min-height: 100vh;
+  position: relative;
+  background: #0f0f17;
+  overflow-x: hidden;
+}
+
+.canvasContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+}
+
+.contentOverlay {
+  position: relative;
+  z-index: var(--z-content);
+  width: 100%;
+}
+
+.heroSection {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-16) 0;
+  position: relative;
+}
+
+.sectionContent {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-8);
+}
+
+.skillsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  align-items: center;
+  text-align: center;
+}
+
+.skillsHeading {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+.skillsIntro {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 600px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.skillsCanvasWrapper {
+  width: 100%;
+  height: 600px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .section {
+    min-height: auto;
+    padding: var(--spacing-12) 0;
+  }
+  
+  .sectionContent {
+    padding: 0 var(--spacing-4);
+  }
+  
+  .skillsHeading {
+    font-size: 2.5rem;
+  }
+  
+  .skillsCanvasWrapper {
+    height: 500px;
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding: var(--spacing-8) 0;
+  }
+  
+  .skillsHeading {
+    font-size: 2rem;
+  }
+  
+  .skillsIntro {
+    font-size: 1rem;
+  }
+  
+  .skillsCanvasWrapper {
+    height: 400px;
+  }
+}

@@ -1,0 +1,29 @@
+.errorFallback {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 15, 23, 0.8);
+  z-index: var(--z-content-low);
+}
+
+.errorContent {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  padding: var(--spacing-8);
+}
+
+.errorContent h3 {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: var(--spacing-4);
+  font-size: 1.2rem;
+}
+
+.errorContent p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
